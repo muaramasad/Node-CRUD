@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MY APP</title>
+	</head>
+	<body>
+		<h3>Quotes of The Day</h3>
+		<ul class="quotes">
+			<% for(var i=0; i<quotes.length; i++) {%>
+			<li class="quote">
+				<span style="font-weight: bold"><%= quotes[i].name %></span> - <span><%= quotes[i].quote %></span> <a href="quotes/<%= quotes[i]._id %>"><button id="update"> Update Quote </button></a>
+			<button id="delete" getid="<%= quotes[i]._id %>"> Delete Quote </button>
+			</li>
+			<% } %>
+		</ul>
+		<form action="/quotes" method="POST">
+			<input type="text" placeholder="name" name="name">
+			<input type="text" placeholder="quote" name="quote">
+			<button type="submit">Submit</button>
+		</form>
+	<script src="main.js"></script>
+	</body>
+</html>
