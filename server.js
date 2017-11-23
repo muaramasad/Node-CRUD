@@ -1,16 +1,20 @@
+const cred = require('./cred');
+
 const express = require('express')
 const bodyParser= require('body-parser')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.json())
+
 var db
 // Declare object Id
 var ObjectId = require('mongodb').ObjectID
 
-MongoClient.connect('mongodb://***:***@ds****.mlab.com:15396/stars-wars-quote', (err, database) => {
+MongoClient.connect(`mongodb://${cred.username}:${cred.password}@${cred.server}`, (err, database) => {
   if (err) return console.log(err)
   db = database
   app.listen(3000, () => {
